@@ -3,6 +3,7 @@ var DashboardView = React.createClass({
 	getInitialState: function() {
 		return {
 			filter: {},
+			color: "pink",
 		};
 	},
 
@@ -61,11 +62,33 @@ var DashboardView = React.createClass({
 		return secondFilteredArray;
 	},
 
+
+	handleColorChange: function(e) {
+		var newColor = e.target.value;
+		this.setState({
+			color: newColor,
+		});
+	},
+
 	render: function() {
-
-
+		var stringArray = [
+			"One", "Two", "Three"
+		];
+		var booleanArray = [
+			true, false 
+		];
+		var integerArray = [
+			5, 0 
+		];
+		var doubleArray = [ 
+			4.0
+		];	
+		var charArray = [
+			'$'
+		];
+		console.log (stringArray);
 		var linkAndText = [
-			{
+		{
 				src: "http://moziru.com/images/drawn-narwhal-rainbow-12.jpg",
 				caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 				header: "Cat Woof", 
@@ -89,8 +112,23 @@ var DashboardView = React.createClass({
 
 		return (
 			<div>
-				{this.renderFilters()}
+			{stringArray} 
+			{charArray}	
+			{integerArray}
+			{doubleArray}
+			<div> 
+					<input type="text" name="color" onChange={this.handleColorChange} />
+					<div style={{border: "1px solid #ccc", width: 40, height: 40, backgroundColor: this.state.color, display: "inline-block", marginLeft: 25, verticalAlign: "middle"}}>
+						&nbsp;
+					</div>
+				</div>
 
+			
+			
+			
+			
+			
+				{this.renderFilters()}
 				{_.map(linkAndText, function(object) {
 					return (
 						<div>
@@ -111,8 +149,8 @@ var DashboardView = React.createClass({
 							<div style={{textAlign: "center", margin: "0 auto", width: 400}}>
 								<p>{object.caption}</p>
 							</div>
-						</div>
-					);
+					</div>
+	);
 				})}
 			</div>
 		);
